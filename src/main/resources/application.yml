@@ -1,0 +1,42 @@
+spring:
+  spring:
+    security:
+      oauth2:
+        resourceserver:
+          jwt:
+            issuer-uri: http://localhost:8080/realms/Test
+            jwt-set-uri: http://localhost:8080/realms/Test/protocol/openid-connect/certs
+  batch:
+    job:
+      enabled: false
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: "123"
+    url: jdbc:postgresql://localhost:5432/theara
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+app:
+  file:
+    upload-dir: ./uploads/files
+server:
+  port: 8888
+logging:
+  level:
+    com.example.mysmallproject: DEBUG
+    org.hibernate: ERROR
+  file:
+    path: ./log/application
+  logback:
+    rolling policy:
+      max-file-size: 10MB
+jwt:
+  auth:
+    converter:
+      principle-attribute: preferred_username
+      resource-id: theara-test-api
